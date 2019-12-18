@@ -20,6 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('topics/view','TopicController@apiIndex')
     ->name('api.topics.index');
 
-
 Route::post('topics/view','TopicController@apiStore')
     ->name('api.topics.store');
+
+Route::get('posts/view','PostController@apiIndex')
+    ->name('api.posts.index');
+
+Route::post('posts/view','PostController@apiStore')
+    ->name('api.post.store');

@@ -4,18 +4,15 @@
 
 @section('content')
     <p>The topics of the forum:</p>
-    <ul>
-        @foreach ($topics as $topic)
-            <li><a href="{{route ('threads.index', ['topic_id' => $topic->id, 'topic_title' => $topic->title]) }}">{{$topic->title}}</a></li>
-        @endforeach
-    </ul>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <div id="root">
         <ul>
-            <li v-for="topic in topics">@{{topic.title}}, @{{topic.description}}</li>
-            
+            <li v-for="topic in topics">
+                <a  v-bind:href="'/threads/view/'+topic.id+'/'+topic.title">@{{topic.title}}, @{{topic.description}}</a>
+                
+            </li>
         </ul>
 
         
@@ -37,11 +34,11 @@
     </form>
     <span v-if="success" >Record submitted successfully!</span>
     <button @click="createTopic">Create</button>
-    <div>
+    </div>
 
 
 
-    <div>
+    </div>
     <script>
         var app = new Vue({
             el: "#root",

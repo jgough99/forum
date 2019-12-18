@@ -6,6 +6,7 @@
 
 
 @section('content')
+
     @foreach($posts as $post)
         <ul>
             <li>{{$post->content}} <b>posted by {{$post->user->userProfile->name}}</b>
@@ -26,6 +27,8 @@
         
     @endforeach
 
+
+   
    
 
 @endsection
