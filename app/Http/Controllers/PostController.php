@@ -6,6 +6,7 @@ use App\Thread;
 use Auth;
 use App\Post;
 use App\Topic;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
@@ -120,6 +121,25 @@ class PostController extends Controller
 
     }
 
+
+    public function createAdmin()
+    {
+        $users = User::all();
+        return view('admin.create',['users'=>$users]);
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $validData = $request->validate([
+            'user_id' => 'required|integer',
+        ]);
+        $selectedUser = User::findOrFail($validData['user_id']);
+
+        $selectedUser->account_type = 'admin';
+        $selectedUser->save();
+
+        return redirect()->route('topics.index');
+    }
 
 
 }

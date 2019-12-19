@@ -29,10 +29,17 @@ Route::get('posts/edit/{post_id}','PostController@edit')->name('post.edit')->mid
 
 Route::delete('posts/delete/{post_id}','PostController@delete')->name('post.delete');
 
+Route::delete('thread/delete/{thread_id}','ThreadController@delete')->name('thread.delete');
+
 Route::get('posts/create/{parent_post_id}', 'PostController@create')->name('post.create');
+
+Route::get('admin/create/', 'PostController@createAdmin')->name('user.create');
 
 
 Route::post('update/post/{post_id}', 'PostController@update')->name('post.update');
+
+Route::post('update/user/', 'PostController@storeAdmin')->name('user.store');
+
 
 Route::post('create/post/{parent_post_id}', 'PostController@store')->name('post.store');
 

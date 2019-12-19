@@ -22,8 +22,17 @@
             <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{$thread->title}}</h5>
-               
                 <a href="{{route ('posts.index', ['thread_id' => $thread->id,'thread_title' => $thread->title]) }}">View Thread</a>
+                @if (Auth::check())
+                @if ($thread->creator_id == Auth::user()->id)
+                <form method="POST"
+                action="{{route('thread.delete',['thread_id' => $thread->id])}}">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-primary" type="submit">Delete</button>
+                @endif
+                @endif
+            </form>
             </div>
             </div>
             <br>

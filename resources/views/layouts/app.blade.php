@@ -29,7 +29,7 @@
                 </a>
 
                 <a  href="{{route ('topics.liked') }}"><button class="btn btn-outline-primary">View Liked Topics</button></a>
-                <a href="{{route ('topics.liked') }}" >Make Admin</a>
+                <a href="{{route ('user.create') }}" >Make Admin</a>
 
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

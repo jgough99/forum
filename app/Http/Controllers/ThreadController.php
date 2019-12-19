@@ -7,11 +7,21 @@ use App\Post;
 use App\Thread;
 use Illuminate\Http\Request;
 use App\Models\Dispatch;
+use Auth;
 
 
 class ThreadController extends Controller
 {
     
+
+    public function delete($thread_id)
+    {
+        $thread = Thread::findOrFail($thread_id);
+        $thread->delete();
+
+        return redirect()->route('threads.index',['topic_id' => $thread->topic->id , 'topic_title' => $thread->topic->title]);
+    }
+
     public function index ($id,$topic_name)
     {
         $topic = Topic::findOrFail($id);
@@ -39,7 +49,7 @@ class ThreadController extends Controller
 
         $newThread = new Thread;
 
-        $newThread -> creator_id = $validData['user_id'];
+        $newThread -> creator_id = Auth::user()->id;
         $newThread -> title = $validData['title'];
         $newThread -> topic_id = $topic->id;
         $newThread -> thread_type = "question";
