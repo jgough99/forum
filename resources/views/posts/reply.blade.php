@@ -3,8 +3,8 @@
 @foreach($replies as $reply)
         <ul  style="list-style: none;">
             <li class="jumbotron">
-            <img class="user_avatar" src="http://lorempixel.com/400/200/sports/" />
-            
+            <img class="user_avatar" src="/storage/{{ $reply->image }}" />
+            <br>
             {{$reply->content}} <b>posted by {{$reply->user->userProfile->name}}</b>
             
             @if (Auth::check())

@@ -9,8 +9,9 @@
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/css/bootstrap-combined.min.css">
 
+<h1>Posts in {{$posts->first()->thread->title}}</h1>
     @foreach($posts as $post)
-        <ul style="list-style: none;">
+        <ul style="padding-left: 0; list-style: none;"}>
             <li class="jumbotron">{{$post->content}} <b>posted by {{$post->user->userProfile->name}}</b>
             @if (Auth::check())
             

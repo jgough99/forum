@@ -3,15 +3,23 @@
 @section('title','Topic')
 
 @section('content')
-    <p>The topics of the forum:</p>
+    <h1>The topics of the forum:</h1>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <div id="root">
-        <ul>
+        <ul style="list-style: none;">
             <li v-for="topic in topics">
                 
-                <a  v-bind:href="'/threads/view/'+topic.id+'/'+topic.title">@{{topic.title}}, @{{topic.description}}</a>
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@{{topic.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@{{topic.created_at}}</h6>
+                <p class="card-text">@{{topic.description}}.</p>
+                <a  v-bind:href="'/threads/view/'+topic.id+'/'+topic.title">View Topic</a>
+            </div>
+            </div>
+            <br>
                 
             </li>
         </ul>
