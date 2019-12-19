@@ -7,19 +7,28 @@
 
 @section('content')
 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/css/bootstrap-combined.min.css">
+
     @foreach($posts as $post)
-        <ul>
-            <li>{{$post->content}} <b>posted by {{$post->user->userProfile->name}}</b>
-            <a href="{{route ('post.create', ['parent_post_id' => $post->id]) }}"> reply</a>
+        <ul style="list-style: none;">
+            <li class="jumbotron">{{$post->content}} <b>posted by {{$post->user->userProfile->name}}</b>
+            @if (Auth::check())
+            
+                <a href="{{route ('post.create', ['parent_post_id' => $post->id]) }}"> reply</a>
+               
+            @endif
+
+            @if ($post->user == Auth::user())
             <a href="{{route ('post.edit', ['post_id' => $post->id]) }}"> edit</a>
             <form method="POST"
                 action="{{route('post.delete',['post_id' => $post->id])}}">
                 @csrf
                 @method('DELETE')
-                <button type="submit">delete</button>
+                <button class="btn btn-primary" type="submit">Delete</button>
             </form>
+            @endif
             </li>
-            <img src="public/storage/images/{{ $post->image }}" >
+            
             @if(count($post->replies))
                 @include('posts.reply',['replies' => $post->replies])
             @endif 

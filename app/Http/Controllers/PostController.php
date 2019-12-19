@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use Auth;
 use App\Post;
 use App\Topic;
 use Illuminate\Http\Request;
@@ -70,7 +71,7 @@ class PostController extends Controller
         $newPost = new Post;
 
         $newPost -> parent_id = $post_id;
-        $newPost -> user_id = $validData['user_id'];
+        $newPost -> user_id = Auth::user()->id;
         $newPost -> thread_id = $parentPost->thread->id;
         $newPost -> content = $validData['content'];
         $newPost -> upvotes = 0;

@@ -8,7 +8,7 @@ use App\UserProfile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Auth;
 class RegisterController extends Controller
 {
     /*
@@ -75,7 +75,7 @@ class RegisterController extends Controller
     
         $newUserProfile = new UserProfile;
 
-        $newUserProfile -> name = $data['name'];
+        $newUserProfile -> name = $data['name'];;
         $newUserProfile -> user_id = User::where('email',$data['email'])->first()->id;
         $newUserProfile -> avatar = "";
         $newUserProfile -> score = 0;

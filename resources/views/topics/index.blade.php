@@ -16,7 +16,7 @@
         </ul>
 
         
-    <button @click="showAddTopic">Add New Topic</button>
+    <button class="btn btn-primary" @click="showAddTopic">Add New Topic</button>
 
     <div v-if="show">
     <h2>New Topic</h2>
@@ -33,7 +33,7 @@
         
     </form>
     <span v-if="success" >Record submitted successfully!</span>
-    <button @click="createTopic">Create</button>
+    <button class="btn btn-primary" @click="createTopic">Create</button>
     </div>
 
 
