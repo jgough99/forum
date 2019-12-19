@@ -19,5 +19,7 @@ class UserTableSeeder extends Seeder
             $user_profile = factory(App\UserProfile::class)->make();
             $user->userProfile()->save($user_profile);
         });
+
+
     }
 }

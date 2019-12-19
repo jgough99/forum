@@ -23,7 +23,7 @@ Route::get('threads/create/{topic_id}/', 'ThreadController@create')->name('threa
 
 Route::get('posts/view/{thread_id}/{thread_title}','PostController@index')->name('posts.index');
 
-Route::get('posts/edit/{post_id}','PostController@edit')->name('post.edit');
+Route::get('posts/edit/{post_id}','PostController@edit')->name('post.edit')->middleware('sameUser');
 
 Route::delete('posts/delete/{post_id}','PostController@delete')->name('post.delete');
 

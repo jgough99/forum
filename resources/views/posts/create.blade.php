@@ -3,7 +3,7 @@
 @section ('title', 'Create Post')
 
 @section ('content')
-    <form method="POST" action="{{route('post.store',['parent_post_id'=>$post->id])}}">
+    <form method="POST"  enctype="multipart/form-data" action="{{route('post.store',['parent_post_id'=>$post->id])}}">
         @csrf
             
         <p>User ID: <input type="text" name="user_id"
@@ -11,6 +11,9 @@
        
         <p>Content: <input type="text" name="content"
             value="{{old('content')}}"></p>
+
+            <input id="image" type="file" class="form-control" name="image">
+
 
         <input type="submit" value="Submit">
 

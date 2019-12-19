@@ -2,7 +2,10 @@
 
 @foreach($replies as $reply)
         <ul  style="list-style: none;">
-            <li class="jumbotron">{{$reply->content}} <b>posted by {{$reply->user->userProfile->name}}</b>
+            <li class="jumbotron">
+            <img class="user_avatar" src="http://lorempixel.com/400/200/sports/" />
+            
+            {{$reply->content}} <b>posted by {{$reply->user->userProfile->name}}</b>
             
             @if (Auth::check())
             <a href="{{route ('post.create', ['parent_post_id' => $reply->id]) }}"> reply</a>
@@ -20,7 +23,7 @@
            
             
             </li> 
-        
+           
 	    @if(count($reply->replies))
             @include('posts.reply',['replies' => $reply->replies])
         @endif

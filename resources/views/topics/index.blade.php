@@ -10,14 +10,17 @@
     <div id="root">
         <ul>
             <li v-for="topic in topics">
+                
                 <a  v-bind:href="'/threads/view/'+topic.id+'/'+topic.title">@{{topic.title}}, @{{topic.description}}</a>
                 
             </li>
         </ul>
 
-        
+    @if (Auth::check())
+    @if (Auth::user()->account_type == "admin")
     <button class="btn btn-primary" @click="showAddTopic">Add New Topic</button>
-
+    @endif
+    @endif
     <div v-if="show">
     <h2>New Topic</h2>
     <form>

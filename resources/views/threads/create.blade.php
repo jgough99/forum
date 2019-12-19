@@ -15,6 +15,7 @@
         <p>Content: <input type="text" name="content"
             value="{{old('content')}}"></p>
 
+
         <input type="submit" value="Submit">
 
     </form>
