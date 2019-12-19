@@ -8,7 +8,12 @@
 @section('content')
     <h1>Threads in {{$topic->title}}</h1>
     <ul   style="padding-left: 0; list-style: none;"}>
-    
+    @if (Auth::check())
+    @if(!Auth::user()->likedTopics->contains($topic->id))
+        <a href="{{route ('topic.like', ['topic_id' => $topic->id]) }}" class="button">Like {{$topic->title}}</a>
+    @endif
+    @endif
+
         @foreach ($threads as $thread)
         
         
@@ -27,7 +32,7 @@
         
         @endforeach
     </ul>
-
+    <span>{{$threads->links()}}</span>
     <a href="{{route ('thread.create', ['topic_id' => $topic->id]) }}">Create new thread</a>
 
     <a href="{{route ('topics.index') }}">back</a>

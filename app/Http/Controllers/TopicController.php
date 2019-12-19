@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Topic;
 use App\Thread;
 use Illuminate\Http\Request;
+use Auth;
 
 
 class TopicController extends Controller
@@ -14,6 +15,24 @@ class TopicController extends Controller
     {
         $topics = Topic::all();
         return view('topics.index',['topics' => $topics]);
+    }
+
+    public function like($topic_id)
+    {
+         $user = Auth::user();
+         $topic = Topic::findOrFail($topic_id);
+
+         $user->likedTopics()->attach($topic);
+
+         return redirect()->route('topics.index');
+    }
+
+    public function liked()
+    {
+         $user = Auth::user();
+         $likedTopics = $user->likedTopics;
+
+         return view('topics.likes',['likedTopics' => $likedTopics]);
     }
 
     public function create()

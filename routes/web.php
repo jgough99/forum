@@ -16,6 +16,8 @@ Route::get('topics/view', 'TopicController@index')->name('topics.index');
 
 Route::get('topics/create', 'TopicController@create')->name('topic.create')->middleware('admin');
 
+Route::get('topics/liked', 'TopicController@liked')->name('topics.liked');
+
 Route::get('threads/view/{topic_id}/{topic_title}','ThreadController@index')->name('threads.index');
 
 Route::get('threads/create/{topic_id}/', 'ThreadController@create')->name('thread.create');
@@ -37,6 +39,8 @@ Route::post('create/post/{parent_post_id}', 'PostController@store')->name('post.
 Route::post('create/thread/{topic_id}', 'ThreadController@store')->name('thread.store');
 
 Route::post('create/topic', 'TopicController@store')->name('topic.store');
+
+Route::get('like/{topic_id}', 'TopicController@like')->name('topic.like');
 
 
 

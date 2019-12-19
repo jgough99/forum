@@ -8,7 +8,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <div id="root">
-        <ul style="list-style: none;">
+        <ul  style="padding-left: 0; list-style: none;">
+        
+        
             <li v-for="topic in topics">
                 
             <div class="card">
@@ -17,6 +19,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">@{{topic.created_at}}</h6>
                 <p class="card-text">@{{topic.description}}.</p>
                 <a  v-bind:href="'/threads/view/'+topic.id+'/'+topic.title">View Topic</a>
+            
             </div>
             </div>
             <br>

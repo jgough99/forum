@@ -6,6 +6,8 @@ use App\Topic;
 use App\Post;
 use App\Thread;
 use Illuminate\Http\Request;
+use App\Models\Dispatch;
+
 
 class ThreadController extends Controller
 {
@@ -14,7 +16,8 @@ class ThreadController extends Controller
     {
         $topic = Topic::findOrFail($id);
         $threads = Thread::all();
-        $threads = Topic::where('id',$id)->get()->first()->threads;
+        $threads = Topic::where('id',$id)->get()->first()->threads()->paginate(2);
+        
         return view('threads.index',['topic'=>$topic,'threads'=>$threads]);
     }
 

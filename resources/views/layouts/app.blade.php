@@ -27,6 +27,11 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
+                <a  href="{{route ('topics.liked') }}"><button class="btn btn-outline-primary">View Liked Topics</button></a>
+                <a href="{{route ('topics.liked') }}" >Make Admin</a>
+
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
