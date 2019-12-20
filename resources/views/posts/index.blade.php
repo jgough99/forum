@@ -4,6 +4,7 @@
 <p>All Post</p>
 @endsection
 
+<!-- Display all posts indentated, if the post has a reply recursively make a new list inside the list of the child posts -->
 
 @section('content')
 
@@ -25,7 +26,7 @@
                 action="{{route('post.delete',['post_id' => $post->id])}}">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-primary" type="submit">Delete</button>
+                <button class="btn btn-danger" type="submit">Delete</button>
             </form>
             @endif
             </li>
@@ -36,7 +37,7 @@
         </ul>
         
     @endforeach
-
+    <a href="{{route ('threads.index',['topic_id' => $posts->first()->thread->topic->id, 'topic_title' => $posts->first()->thread->topic->title] )}}">back</a>
 
    
    

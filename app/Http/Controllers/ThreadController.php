@@ -13,7 +13,7 @@ use Auth;
 class ThreadController extends Controller
 {
     
-
+    //Used to delete a thread
     public function delete($thread_id)
     {
         $thread = Thread::findOrFail($thread_id);
@@ -22,6 +22,7 @@ class ThreadController extends Controller
         return redirect()->route('threads.index',['topic_id' => $thread->topic->id , 'topic_title' => $thread->topic->title]);
     }
 
+    //Used to get all threads in a topic 
     public function index ($id,$topic_name)
     {
         $topic = Topic::findOrFail($id);
@@ -31,16 +32,18 @@ class ThreadController extends Controller
         return view('threads.index',['topic'=>$topic,'threads'=>$threads]);
     }
 
+    //used to return create a new thread view
     public function create($topic_id)
     {
         $topic = Topic::findOrFail($topic_id);
         return view('threads.create',['topic'=>$topic]);
     }
 
+    //Used to store a new thread
     public function store(Request $request, $topic_id)
     {
         $validData = $request->validate([
-            'user_id' => 'required|integer',
+            
             'title' => 'required|max:30',
             'content'=> 'required|max:255',
         ]);
@@ -60,7 +63,7 @@ class ThreadController extends Controller
         $newPost = new Post;
 
         $newPost -> parent_id = null;
-        $newPost -> user_id = $validData['user_id'];
+        $newPost -> user_id = Auth::user()->id;
         $newPost -> thread_id = $newThread->id;
         $newPost -> content = $validData['content'];
         $newPost -> upvotes = 0;

@@ -41,6 +41,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'upvotes' => $faker->numberBetween(0,1000),
         'downvotes' => $faker->numberBetween(0,1000),
         'solution' => $solution,
-        'image' => $faker->image('public/storage/images',640,480, null, false),
+        'image' => null,
     ];
 });

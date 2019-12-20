@@ -2,17 +2,16 @@
 
 @section ('title', 'Edit Post')
 
+
+<!-- Get inputs from a user to edit a post -->
 @section ('content')
     <form method="POST" action="{{route('post.update',['post_id'=>$post->id])}}">
         @csrf
-            
-        <p>User ID: <input type="text" name="user_id"
-            value="{{old('user_id')}}"></p>
        
         <p>Content: <input type="text" name="content"
             value="{{$post->content}}"></p>
 
-        <input type="submit" value="Submit">
+        <input  class="btn btn-primary" type="submit" value="Submit">
 
     </form>
 @endsection

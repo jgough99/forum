@@ -1,9 +1,12 @@
-
+<!-- When a post with no parent post has replies, this reply view will be recursivly run where each
+group of replies is its own unordered list -->
 
 @foreach($replies as $reply)
         <ul  style="list-style: none;">
             <li class="jumbotron">
+            @if($reply->image != null)
             <img class="user_avatar" src="/storage/{{ $reply->image }}" />
+            @endif
             <br>
             {{$reply->content}} <b>posted by {{$reply->user->userProfile->name}}</b>
             
@@ -16,7 +19,7 @@
                 action="{{route('post.delete',['post_id' => $reply->id])}}">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-primary" type="submit">delete</button>
+                <button class="btn btn-danger" type="submit">delete</button>
             </form>
             @endif
             @endif

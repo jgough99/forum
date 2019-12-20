@@ -3,6 +3,7 @@
 @section('title')
 @endsection
 
+<!-- Showing all the topics the user has liked -->
 
 @section('content')
     <h1>Liked Topics:</h1>

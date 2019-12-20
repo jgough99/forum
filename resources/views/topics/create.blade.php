@@ -2,20 +2,20 @@
 
 @section ('title', 'Create Topic')
 
+<!-- Get user input to create a new topic -->
+
 @section ('content')
     <form method="POST" action="{{route('topic.store')}}">
         @csrf
             
-        <p>User ID: <input type="text" name="user_id"
-            value="{{old('user_id')}}"></p>
        
-        <p>Title: <input type="text" name="title"
+        <p>Title: <input class="form-control" type="text" name="title"
             value="{{old('title')}}"></p>
 
-            <p>Title: <input type="text" name="description"
+            <p>Content: <input class="form-control" type="text" name="description"
             value="{{old('description')}}"></p>
 
-        <input type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Submit">
 
     </form>
 @endsection

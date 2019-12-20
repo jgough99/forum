@@ -2,6 +2,8 @@
 
 @section('title','Topic')
 
+<!-- Using AJAX to dynamically display and add topics without the need to refresh the page -->
+
 @section('content')
     <h1>The topics of the forum:</h1>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -32,14 +34,17 @@
     <button class="btn btn-primary" @click="showAddTopic">Add New Topic</button>
     @endif
     @endif
+    <br>
+    <br>
     <div v-if="show">
     <h2>New Topic</h2>
     <form>
-    <p>Title: <input type="text" name="title"
+    
+    <p>Title: <input class="form-control" type="text" name="title"
             value="{{old('title')}}" v-model=newTopicTitle>
             <span v-if="allerros.title">@{{allerros.title[0] }}</span></p>
 
-    <p>Desc: <input type="text" name="description"
+    <p>Description: <input class="form-control" type="text" name="description"
             value="{{old('description')}}" v-model=newTopicDesc>
             <span v-if="allerros.description">@{{ allerros.description[0] }}</span></p>
 

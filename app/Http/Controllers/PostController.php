@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
 
-
+    //Uploads a file and saves it to the public images folder
     public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
@@ -28,6 +28,7 @@ class PostController extends Controller
         return $file;
     }
 
+    //Returns all posts in a thread
     public function index($thread_id,$thread_title)
     {
         $thread = Thread::findOrFail($thread_id);
@@ -37,18 +38,21 @@ class PostController extends Controller
         return view('posts.index', compact('posts'),['thread'=>$thread]);
     }
 
+    //Used to create a new post
     public function create($parent_post_id)
     {
         $post = Post::findOrFail($parent_post_id);
         return view('posts.create',['post'=>$post]);
     }
 
+    //Used to edit a post
     public function edit($post_id)
     {
         $post = Post::findOrFail($post_id);
         return view('posts.edit',['post'=>$post]);
     }
 
+    //Used to delete a post
     public function delete($post_id)
     {
         $post = Post::findOrFail($post_id);
@@ -57,10 +61,11 @@ class PostController extends Controller
         return redirect()->route('posts.index',['thread_id' => $post->thread->id , 'thread_title' => $post->thread->topic->title]);
     }
 
+    //Used to store the updates to a post
     public function update(Request $request, $post_id)
     {
         $validData = $request->validate([
-            'user_id' => 'required|integer',
+           
             'content'=> 'required|max:255',
         ]);
 
@@ -74,10 +79,11 @@ class PostController extends Controller
 
     }
 
+    //Store a new post
     public function store(Request $request, $post_id)
     {
         $validData = $request->validate([
-            'user_id' => 'required|integer',
+            
             'content'=> 'required|max:255',
         ]);
 
@@ -121,13 +127,14 @@ class PostController extends Controller
 
     }
 
-
+    //Used to create an admin
     public function createAdmin()
     {
         $users = User::all();
         return view('admin.create',['users'=>$users]);
     }
 
+    //Used to store an admin
     public function storeAdmin(Request $request)
     {
         $validData = $request->validate([

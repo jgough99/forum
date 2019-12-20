@@ -11,12 +11,14 @@ use Auth;
 class TopicController extends Controller
 {
     
+    //Retutn all topics
     public function index()
     {
         $topics = Topic::all();
         return view('topics.index',['topics' => $topics]);
     }
 
+    //Like a topic
     public function like($topic_id)
     {
          $user = Auth::user();
@@ -27,6 +29,7 @@ class TopicController extends Controller
          return redirect()->route('topics.index');
     }
 
+    //Get all liked topics by user
     public function liked()
     {
          $user = Auth::user();
@@ -35,11 +38,13 @@ class TopicController extends Controller
          return view('topics.likes',['likedTopics' => $likedTopics]);
     }
 
+    //Create a new topic
     public function create()
     {
         return view('topics.create');
     }
 
+    //Store a new topic
     public function store(Request $request)
     {
         $validData = $request->validate([
@@ -63,6 +68,7 @@ class TopicController extends Controller
 
     }
 
+    //Store a new topic using AJAX
     public function apiStore(Request $request)
     {
 
@@ -87,7 +93,7 @@ class TopicController extends Controller
         return $newTopic;
     }
 
-
+    //Get all topics using AJAX
     public function apiIndex()
     {
         $topics = Topic::all();

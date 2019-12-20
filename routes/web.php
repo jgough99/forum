@@ -35,6 +35,8 @@ Route::get('posts/create/{parent_post_id}', 'PostController@create')->name('post
 
 Route::get('admin/create/', 'PostController@createAdmin')->name('user.create');
 
+Route::get('/', 'TopicController@index');
+
 
 Route::post('update/post/{post_id}', 'PostController@update')->name('post.update');
 
@@ -57,4 +59,4 @@ Route::get('like/{topic_id}', 'TopicController@like')->name('topic.like');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'TopicController@index')->name('home');

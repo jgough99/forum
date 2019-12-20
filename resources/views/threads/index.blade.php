@@ -4,13 +4,16 @@
 <p>{{$topic->title}}</p>
 @endsection
 
+<!-- Show all threads in a topic -->
 
 @section('content')
     <h1>Threads in {{$topic->title}}</h1>
     <ul   style="padding-left: 0; list-style: none;"}>
     @if (Auth::check())
     @if(!Auth::user()->likedTopics->contains($topic->id))
-        <a href="{{route ('topic.like', ['topic_id' => $topic->id]) }}" class="button">Like {{$topic->title}}</a>
+        <a href="{{route ('topic.like', ['topic_id' => $topic->id]) }}" ><button class="btn btn-warning">Like {{$topic->title}}</button></a>
+        <br>
+        <br>
     @endif
     @endif
 
@@ -29,7 +32,7 @@
                 action="{{route('thread.delete',['thread_id' => $thread->id])}}">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-primary" type="submit">Delete</button>
+                <button class="btn btn-danger" type="submit">Delete</button>
                 @endif
                 @endif
             </form>
@@ -42,7 +45,8 @@
         @endforeach
     </ul>
     <span>{{$threads->links()}}</span>
-    <a href="{{route ('thread.create', ['topic_id' => $topic->id]) }}">Create new thread</a>
-
+    @if(auth::check())
+    <a href="{{route ('thread.create', ['topic_id' => $topic->id]) }}"><button class="btn btn-primary">Create new thread</button></a>
+    @endif
     <a href="{{route ('topics.index') }}">back</a>
 @endsection

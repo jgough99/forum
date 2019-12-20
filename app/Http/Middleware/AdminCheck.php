@@ -13,6 +13,8 @@ class AdminCheck
      * @param  \Closure  $next
      * @return mixed
      */
+
+     //Check if the current user is an admin
     public function handle($request, Closure $next)
     {
         $user = \Auth::user();
